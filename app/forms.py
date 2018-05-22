@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, SubmitField, SelectField, DateField
+from wtforms import StringField, TextAreaField, SubmitField, SelectField
+from wtforms.fields.html5 import DateField
 
 class DocumentForm(FlaskForm):
     # From MongoDB document.sourceType field
@@ -8,7 +9,7 @@ class DocumentForm(FlaskForm):
         ('cen','Census'),('court','Court Document'),
         ('prob','Probate Account'),('will','Will')])
     citation = StringField('Citation information')
-    date = DateField('Date of publication')
+    date = DateField('Date of publication',format="%Y-%m-%d")
     context = StringField('National context')
     zotero = StringField('Zotero ID')
     comments = TextAreaField('Comments')
@@ -21,6 +22,7 @@ class RecordForm(FlaskForm):
         ('Baptism','Baptism'), ('Runaway capture advertisement','Runaway capture advertisement'),
         ('Smallpox inoculation notice','Smallpox inoculation notice'), ('Execution notice','Execution notice')])
     citation = StringField('Citation information')
-    date = DateField('Date of publication')
+    date = DateField('Date of publication',format="%Y-%m-%d")
     comments = TextAreaField('Comments')
+
     submit = SubmitField('Create')
